@@ -1,27 +1,16 @@
-import { Button } from "@material-tailwind/react";
-import { HiTrash, HiPencil, HiCheck } from "react-icons/hi";
+import { TaskType } from "../App";
+import { Task } from "./../Task/index";
 
-export const TaskList = () => {
+interface TaskListProps {
+  tasks: TaskType[];
+}
+
+export const TaskList = ({ tasks }: TaskListProps) => {
   return (
-    <>
-      <div>
-        <ul className="">
-          <div className="flex justify-items-center items-center my-6 border-b-2 border-gray-300 ">
-            <li className="bg-brown-50 text-gray-700  flex grow p-2">
-              Your Task
-            </li>
-            <Button className="bg-red-400 text-brown-50 rounded-none hover:shadow-gray-400">
-              <HiCheck />
-            </Button>
-            <Button className="bg-red-400 text-brown-50 rounded-none hover:shadow-gray-400">
-              <HiPencil />
-            </Button>
-            <Button className="bg-red-400 text-brown-50 rounded-none hover:shadow-gray-400">
-              <HiTrash />
-            </Button>
-          </div>
-        </ul>
-      </div>
-    </>
+    <ul className="flex flex-col gap-4 my-6 border-gray-300 ">
+      {tasks.map((task) => (
+        <Task value={task.name} key={task.id} />
+      ))}
+    </ul>
   );
 };
