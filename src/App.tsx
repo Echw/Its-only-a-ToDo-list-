@@ -3,6 +3,7 @@ import { Layout } from "./Layout/index";
 import { TaskList } from "./TaskList";
 import { TaskInput } from "./TaskInput";
 import { useState } from "react";
+import { DoneList } from "./DoneList";
 
 export type TaskType = {
   name: string;
@@ -11,6 +12,7 @@ export type TaskType = {
 
 function App() {
   const [tasks, setTasks] = useState<TaskType[]>([]);
+  const [doneTasks, setDoneTasks] = useState<TaskType[]>([]);
 
   return (
     <Layout>
@@ -19,7 +21,13 @@ function App() {
           It's Only a ToDo list
         </Typography>
         <TaskInput tasks={tasks} setTasks={setTasks} />
-        <TaskList tasks={tasks} setTasks={setTasks} />
+        <TaskList
+          tasks={tasks}
+          setTasks={setTasks}
+          doneTasks={doneTasks}
+          setDoneTasks={setDoneTasks}
+        />
+        <DoneList tasks={doneTasks} />
       </div>
     </Layout>
   );

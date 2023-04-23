@@ -14,10 +14,11 @@ import { HiTrash, HiPencil, HiCheck } from "react-icons/hi";
 interface TaskProps {
   value: string;
   id: string;
-  onChange: (value: string, id: string) => void;
+  onChange?: (value: string, id: string) => void;
+  onDoneStateChange?: (value: string, id: string) => void;
 }
 
-export const Task = ({ value, id, onChange }: TaskProps) => {
+export const Task = ({ value, id, onChange, onDoneStateChange }: TaskProps) => {
   const [open, setOpen] = useState(false);
   const [update, setUpdate] = useState(value);
   const handleOpen = () => setOpen((cur) => !cur);
@@ -29,6 +30,11 @@ export const Task = ({ value, id, onChange }: TaskProps) => {
         <div>
           <Button
             variant="text"
+            onClick={() => {
+              if (onDoneStateChange) {
+                onDoneStateChange(value, id);
+              }
+            }}
             className="bg-brown-50 text-red-400 rounded-none hover:bg-brown-100"
           >
             <HiCheck />
@@ -79,7 +85,9 @@ export const Task = ({ value, id, onChange }: TaskProps) => {
               type="submit"
               onClick={() => {
                 handleOpen();
-                onChange(update, id);
+                if (onChange) {
+                  onChange(update, id);
+                }
               }}
               fullWidth
               className="bg-red-400 text-brown-50 rounded-none shadow-none hover:bg-gray-700 hover:shadow-none"
