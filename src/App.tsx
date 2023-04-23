@@ -19,7 +19,7 @@ function App() {
           It's Only a ToDo list
         </Typography>
         <TaskInput tasks={tasks} setTasks={setTasks} />
-        <TaskList tasks={tasks} />
+        <TaskList tasks={tasks} setTasks={setTasks} />
       </div>
     </Layout>
   );
