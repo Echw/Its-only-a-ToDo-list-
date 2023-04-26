@@ -4,6 +4,7 @@ import { TaskList } from "./TaskList";
 import { TaskInput } from "./TaskInput";
 import { useState } from "react";
 import { DoneList } from "./DoneList";
+import { Sidebar } from "./Sidebar";
 
 export type TaskType = {
   name: string;
@@ -16,18 +17,26 @@ function App() {
 
   return (
     <Layout>
-      <div className="bg-brown-50 flex flex-col gap-6 m-6 p-6 justify-center justify-items-center content-center rounded-2xl drop-shadow-2xl">
-        <Typography variant="h1" color="gray">
-          It's Only a ToDo list
-        </Typography>
-        <TaskInput tasks={tasks} setTasks={setTasks} />
-        <TaskList
-          tasks={tasks}
-          setTasks={setTasks}
-          doneTasks={doneTasks}
-          setDoneTasks={setDoneTasks}
+      <div className="bg-brown-50 flex flex-row gap-6 m-6 justify-center justify-items-center content-center overflow-hidden rounded-2xl drop-shadow-2xl">
+        <Sidebar
+          open={false}
+          onClose={function (): void {
+            throw new Error("Function not implemented.");
+          }}
         />
-        <DoneList tasks={doneTasks} />
+        <div className="flex flex-col gap-6 m-6 p-6 justify-center justify-items-center content-center">
+          <Typography variant="h1" color="gray">
+            It's Only a ToDo list
+          </Typography>
+          <TaskInput tasks={tasks} setTasks={setTasks} />
+          <TaskList
+            tasks={tasks}
+            setTasks={setTasks}
+            doneTasks={doneTasks}
+            setDoneTasks={setDoneTasks}
+          />
+          <DoneList tasks={doneTasks} />
+        </div>
       </div>
     </Layout>
   );
