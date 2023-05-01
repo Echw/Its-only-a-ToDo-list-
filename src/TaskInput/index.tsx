@@ -2,14 +2,10 @@
 import { Input, Button } from "@material-tailwind/react";
 import { useState } from "react";
 import { HiPlus } from "react-icons/hi";
-import { TaskType } from "../App";
+import { useAppContext } from "../utils/hooks/useAppContext";
 
-interface TaskInputProps {
-  tasks: TaskType[];
-  setTasks: (tasks: TaskType[]) => void;
-}
-
-export const TaskInput = ({ tasks, setTasks }: TaskInputProps) => {
+export const TaskInput = () => {
+  const { tasks, setTasks } = useAppContext();
   const [task, setTask] = useState("");
   const onChange = ({ target }: any) => {
     setTask(target.value);

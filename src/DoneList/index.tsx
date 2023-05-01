@@ -1,12 +1,9 @@
 import { Typography } from "@material-tailwind/react";
-import { TaskType } from "../App";
 import { Task } from "../Task";
+import { useAppContext } from "../utils/hooks/useAppContext";
 
-interface TaskListProps {
-  tasks: TaskType[];
-}
-
-export const DoneList = ({ tasks }: TaskListProps) => {
+export const DoneList = () => {
+  const { doneTasks } = useAppContext();
   return (
     <ul className="flex flex-col gap-4 my-6 border-gray-300 ">
       <Typography
@@ -16,7 +13,7 @@ export const DoneList = ({ tasks }: TaskListProps) => {
       >
         Done
       </Typography>
-      {tasks.map((task) => (
+      {doneTasks.map((task) => (
         <Task value={task.name} key={task.id} id={task.id} />
       ))}
     </ul>

@@ -1,20 +1,10 @@
 import { Typography } from "@material-tailwind/react";
-import { TaskType } from "../App";
 import { Task } from "./../Task/index";
+import { useAppContext } from "../utils/hooks/useAppContext";
 
-interface TaskListProps {
-  tasks: TaskType[];
-  doneTasks: TaskType[];
-  setTasks: (tasks: TaskType[]) => void;
-  setDoneTasks: (tasks: TaskType[]) => void;
-}
+export const TaskList = () => {
+  const { tasks, doneTasks, setTasks, setDoneTasks } = useAppContext();
 
-export const TaskList = ({
-  tasks,
-  doneTasks,
-  setTasks,
-  setDoneTasks,
-}: TaskListProps) => {
   const onTaskChange = (value: string, id: string) => {
     const newTasks = tasks.map((task) => {
       if (task.id === id) {
