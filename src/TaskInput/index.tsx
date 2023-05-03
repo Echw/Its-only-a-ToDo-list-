@@ -12,7 +12,10 @@ export const TaskInput = () => {
   };
   const onSubmit = (e: any) => {
     e.preventDefault();
-    setTasks([...tasks, { name: task, id: new Date().toString() }]);
+    setTasks([
+      ...tasks,
+      { name: task, id: Date.now().toString(), isDone: false },
+    ]);
     setTask("");
   };
 
@@ -20,7 +23,7 @@ export const TaskInput = () => {
     <>
       <form
         onSubmit={onSubmit}
-        className="relative flex w-full justify-items-center items-center"
+        className="relative flex w-full justify-items-center items-center  my-8"
       >
         <Input
           type="text"

@@ -6,19 +6,19 @@ import Calendar from "./../../pages/Calendar/Calendar";
 export const data = [
   {
     label: "List",
-    value: "html",
+    value: "list",
     icon: BsListCheck,
     content: List,
   },
   {
     label: "Kanaban",
-    value: "react",
+    value: "kanban",
     icon: BsKanban,
     content: Kanban,
   },
   {
     label: "Calendar",
-    value: "vue",
+    value: "calendar",
     icon: BsCalendar,
     content: Calendar,
   },

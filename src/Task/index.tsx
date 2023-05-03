@@ -10,44 +10,78 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { HiTrash, HiPencil, HiCheck } from "react-icons/hi";
+import { IoMdClose } from "react-icons/io";
+
+import DatePicker from "react-datepicker";
+import { TaskType } from "../utils/types/TaskType";
 
 interface TaskProps {
-  value: string;
-  id: string;
+  task: TaskType;
   onChange?: (value: string, id: string) => void;
   onDoneStateChange?: (value: string, id: string) => void;
+  onUndoneStateChange?: (value: string, id: string) => void;
+  onDeleteTask?: (id: string) => void;
 }
 
-export const Task = ({ value, id, onChange, onDoneStateChange }: TaskProps) => {
+export const Task = ({
+  task,
+  onChange,
+  onDoneStateChange,
+  onUndoneStateChange,
+  onDeleteTask,
+}: TaskProps) => {
   const [open, setOpen] = useState(false);
-  const [update, setUpdate] = useState(value);
+  const [update, setUpdate] = useState(task.name);
+  const [startDate, setStartDate] = useState<Date | null>(new Date());
   const handleOpen = () => setOpen((cur) => !cur);
 
   return (
     <>
       <li className="bg-brown-50 text-gray-700 flex grow justify-between items-stretch">
-        <Typography variant="paragraph">{value}</Typography>
+        <Typography variant="paragraph">{task.name}</Typography>
         <div>
+          {!task.isDone && (
+            <>
+              <Button
+                variant="text"
+                onClick={() => {
+                  if (onDoneStateChange) {
+                    onDoneStateChange(task.name, task.id);
+                  }
+                }}
+                className="bg-brown-50 text-red-400 rounded-none hover:bg-brown-100"
+              >
+                <HiCheck />
+              </Button>
+              <Button
+                variant="text"
+                onClick={handleOpen}
+                className="bg-brown-50 text-red-400 rounded-none hover:bg-brown-100"
+              >
+                <HiPencil />
+              </Button>
+            </>
+          )}
+          {task.isDone && (
+            <Button
+              variant="text"
+              onClick={() => {
+                if (onUndoneStateChange) {
+                  onUndoneStateChange(task.name, task.id);
+                }
+              }}
+              className="bg-brown-50 text-red-400 rounded-none hover:bg-brown-100"
+            >
+              <IoMdClose />
+            </Button>
+          )}
           <Button
             variant="text"
             onClick={() => {
-              if (onDoneStateChange) {
-                onDoneStateChange(value, id);
+              if (onDeleteTask) {
+                onDeleteTask(task.id);
               }
             }}
-            className="bg-brown-50 text-red-400 rounded-none hover:bg-brown-100"
-          >
-            <HiCheck />
-          </Button>
-          <Button
-            variant="text"
-            onClick={handleOpen}
-            className="bg-brown-50 text-red-400 rounded-none hover:bg-brown-100"
-          >
-            <HiPencil />
-          </Button>
-          <Button
-            variant="text"
             className="bg-brown-50 text-red-400 rounded-none hover:bg-brown-100"
           >
             <HiTrash />
@@ -60,10 +94,10 @@ export const Task = ({ value, id, onChange, onDoneStateChange }: TaskProps) => {
         handler={handleOpen}
         className="bg-transparent shadow-none min-w-[50%]"
       >
-        <Card className="mx-auto w-full max-w-[24rem] rounded-none bg-brown-50">
-          <CardHeader className="mb-4 grid h-28 place-items-center bg-gray-700 rounded-none">
+        <Card className="mx-auto w-full max-w-[24rem]  bg-brown-50">
+          <CardHeader className="mb-4 grid h-28 place-items-center bg-gray-800 ">
             <Typography variant="h3" className="text-brown-50">
-              Change your task
+              Edit your task
             </Typography>
           </CardHeader>
           <CardBody className="flex flex-col gap-4">
@@ -79,6 +113,11 @@ export const Task = ({ value, id, onChange, onDoneStateChange }: TaskProps) => {
                 className: "text-gray-200 placeholder:text-gray-200 ",
               }}
             />
+            <DatePicker
+              showIcon
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+            />
           </CardBody>
           <CardFooter className="pt-0">
             <Button
@@ -86,7 +125,7 @@ export const Task = ({ value, id, onChange, onDoneStateChange }: TaskProps) => {
               onClick={() => {
                 handleOpen();
                 if (onChange) {
-                  onChange(update, id);
+                  onChange(update, task.id);
                 }
               }}
               fullWidth

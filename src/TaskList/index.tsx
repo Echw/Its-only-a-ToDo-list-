@@ -14,15 +14,22 @@ export const TaskList = () => {
     });
     setTasks(newTasks);
   };
-  const onDoneStateChange = (value: string, id: string) => {
-    if (setDoneTasks) {
-      const doneTask = tasks.filter((task) => {
-        return task.id !== id;
-      });
-      setTasks(doneTask);
-      setDoneTasks([...doneTasks, { name: value, id: id }]);
-    }
+
+  const onDeleteTask = (id: string) => {
+    const newTasks = tasks.filter((task) => {
+      return task.id !== id;
+    });
+    setTasks(newTasks);
   };
+
+  const onDoneStateChange = (value: string, id: string) => {
+    const doneTask = tasks.filter((task) => {
+      return task.id !== id;
+    });
+    setTasks(doneTask);
+    setDoneTasks([...doneTasks, { name: value, id: id, isDone: true }]);
+  };
+
   return (
     <ul className="flex flex-col gap-4 my-6 border-gray-300 ">
       <Typography
@@ -34,11 +41,11 @@ export const TaskList = () => {
       </Typography>
       {tasks.map((task) => (
         <Task
-          value={task.name}
+          task={task}
           key={task.id}
-          id={task.id}
           onChange={onTaskChange}
           onDoneStateChange={onDoneStateChange}
+          onDeleteTask={onDeleteTask}
         />
       ))}
     </ul>
