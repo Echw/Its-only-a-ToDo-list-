@@ -4,6 +4,7 @@ import {
   Tabs,
   TabsBody,
   TabsHeader,
+  Typography,
 } from "@material-tailwind/react";
 import { data } from "../utils/constants/constant";
 import { createElement } from "react";
@@ -15,13 +16,16 @@ interface SidebarProps {
 
 export const Sidebar = (props: SidebarProps) => {
   return (
-    <>
-      <Tabs value="dashboard" className="bg-gray-800 flex h-full ">
+    <Tabs value="list" className="bg-gray-800 h-full w-full flex ">
+      <div className="flex flex-col  mb-6">
+        <Typography variant="h3" className="text-brown-100 my-3 p-4">
+          It's only a ToDo list
+        </Typography>
         <TabsHeader
-          className="bg-gray-800 flex flex-col  p-0 my-12 justify-start content-start basis-1/3 "
+          className="bg-gray-800 flex flex-col p-0 w-full justify-start content-start "
           indicatorProps={{
             className:
-              "bg-red-400/10 w-full shadow-none rounded-none border-r-4 border-red-400",
+              "bg-red-400/10 w-full shadow-none rounded-none border-r-4 border-red-400 w-full",
           }}
         >
           {data.map(({ label, value, icon }) => (
@@ -37,14 +41,14 @@ export const Sidebar = (props: SidebarProps) => {
             </Tab>
           ))}
         </TabsHeader>
-        <TabsBody className="bg-brown-50">
-          {data.map(({ value, content }) => (
-            <TabPanel key={value} value={value}>
-              {createElement(content)}
-            </TabPanel>
-          ))}
-        </TabsBody>
-      </Tabs>
-    </>
+      </div>
+      <TabsBody className="bg-brown-50">
+        {data.map(({ value, content }) => (
+          <TabPanel key={value} value={value}>
+            {createElement(content)}
+          </TabPanel>
+        ))}
+      </TabsBody>
+    </Tabs>
   );
 };

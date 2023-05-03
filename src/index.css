@@ -5,9 +5,14 @@
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #e7e5e4;
+  background-color: #d7ccc8;
+}
+
+#root {
+  height: 100%;
 }
 
 h1 {

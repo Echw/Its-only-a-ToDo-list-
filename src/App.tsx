@@ -1,19 +1,19 @@
+import "react-datepicker/dist/react-datepicker.css";
 import { Layout } from "./Layout/index";
-
 import { Sidebar } from "./Sidebar";
 
 function App() {
   return (
-    <Layout>
-      <div className="bg-brown-50 flex overflow-hidden rounded-2xl drop-shadow-2xl">
+    <div className="h-5/6 p-20 center flex justify-center grow">
+      <Layout>
         <Sidebar
           open={false}
           onClose={function (): void {
             throw new Error("Function not implemented.");
           }}
         />
-      </div>
-    </Layout>
+      </Layout>
+    </div>
   );
 }
 
