@@ -42,7 +42,7 @@ export const Sidebar = (props: SidebarProps) => {
           ))}
         </TabsHeader>
       </div>
-      <TabsBody className="bg-brown-50">
+      <TabsBody className="bg-brown-50 px-20 py-10">
         {data.map(({ value, content }) => (
           <TabPanel key={value} value={value}>
             {createElement(content)}

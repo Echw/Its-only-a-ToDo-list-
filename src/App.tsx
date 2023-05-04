@@ -4,16 +4,21 @@ import { Sidebar } from "./Sidebar";
 
 function App() {
   return (
-    <div className="h-5/6 p-20 center flex justify-center grow">
-      <Layout>
-        <Sidebar
-          open={false}
-          onClose={function (): void {
-            throw new Error("Function not implemented.");
-          }}
-        />
-      </Layout>
-    </div>
+    <>
+      {/* <img src="./assets/ellipse_1.svg" />
+      <img src="./assets/ellipse_2.svg" />
+      <img src="./assets/ellipse_3.svg" /> */}
+      <div className="min-h-5/6 min-w-5/6 py-10 px-20 center flex justify-center grow">
+        <Layout>
+          <Sidebar
+            open={false}
+            onClose={function (): void {
+              throw new Error("Function not implemented.");
+            }}
+          />
+        </Layout>
+      </div>
+    </>
   );
 }
 

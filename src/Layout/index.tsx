@@ -6,7 +6,7 @@ interface LayoutProps {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="flex overflow-hidden rounded-2xl drop-shadow-2xl max-w-screen-xl	">
+    <div className="flex overflow-hidden rounded-2xl drop-shadow-2xl max-w-screen-xl	w-full">
       {children}
     </div>
   );

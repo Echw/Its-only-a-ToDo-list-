@@ -9,13 +9,59 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #d7ccc8;
+  overflow: hidden;
 }
 
 #root {
   height: 100%;
+  width: 100%;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+.ellipse {
+  position: absolute;
+}
+.ellipse_1a {
+  top: -9vw;
+  left: -3vw;
+  width: 20vw;
+}
+.ellipse_1b {
+  right: -15vw;
+  top: -4vw;
+  width: 31vw;
+}
+.ellipse_1c {
+  bottom: -4vw;
+  width: 30vw;
+  left: -13vw;
+}
+.ellipse_2a {
+  top: -2vw;
+  width: 14vw;
+  left: 10vw;
+}
+.ellipse_2b {
+  right: 9vw;
+  top: 0vw;
+  width: 10vw;
+}
+.ellipse_3a {
+  top: 8vw;
+  width: 11vw;
+  left: 8vw;
+}
+.ellipse_3b {
+  right: -5vw;
+  top: 12vw;
+  width: 20vw;
+}
+.ellipse_3c {
+  bottom: -6vw;
+  width: 23vw;
+  left: 6vw;
 }

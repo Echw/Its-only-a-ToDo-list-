@@ -5,7 +5,7 @@ import { HiPlus } from "react-icons/hi";
 import { useAppContext } from "../utils/hooks/useAppContext";
 
 export const TaskInput = () => {
-  const { tasks, setTasks } = useAppContext();
+  const { tasks, setTasks, saveTasksInLocalStorage } = useAppContext();
   const [task, setTask] = useState("");
   const onChange = ({ target }: any) => {
     setTask(target.value);
@@ -17,6 +17,10 @@ export const TaskInput = () => {
       { name: task, id: Date.now().toString(), isDone: false },
     ]);
     setTask("");
+    saveTasksInLocalStorage([
+      ...tasks,
+      { name: task, id: Date.now().toString(), isDone: false },
+    ]);
   };
 
   return (
