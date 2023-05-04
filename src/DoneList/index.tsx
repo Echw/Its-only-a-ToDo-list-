@@ -3,19 +3,29 @@ import { Task } from "../Task";
 import { useAppContext } from "../utils/hooks/useAppContext";
 
 export const DoneList = () => {
-  const { tasks, doneTasks, setTasks, setDoneTasks } = useAppContext();
+  const {
+    tasks,
+    doneTasks,
+    setTasks,
+    setDoneTasks,
+    saveDoneTasksInLocalStorage,
+    saveTasksInLocalStorage,
+  } = useAppContext();
   const onUndoneStateChange = (value: string, id: string) => {
     const newDoneTasks = doneTasks.filter((task) => {
       return task.id !== id;
     });
     setTasks([...tasks, { name: value, id: id, isDone: false }]);
+    saveTasksInLocalStorage([...tasks, { name: value, id: id, isDone: false }]);
     setDoneTasks(newDoneTasks);
+    saveDoneTasksInLocalStorage(newDoneTasks);
   };
   const onDeleteTask = (id: string) => {
     const newDoneTasks = doneTasks.filter((task) => {
       return task.id !== id;
     });
     setDoneTasks(newDoneTasks);
+    saveDoneTasksInLocalStorage(newDoneTasks);
   };
 
   return (

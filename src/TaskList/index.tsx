@@ -3,7 +3,14 @@ import { Task } from "./../Task/index";
 import { useAppContext } from "../utils/hooks/useAppContext";
 
 export const TaskList = () => {
-  const { tasks, doneTasks, setTasks, setDoneTasks } = useAppContext();
+  const {
+    tasks,
+    doneTasks,
+    setTasks,
+    setDoneTasks,
+    saveDoneTasksInLocalStorage,
+    saveTasksInLocalStorage,
+  } = useAppContext();
 
   const onTaskChange = (value: string, id: string) => {
     const newTasks = tasks.map((task) => {
@@ -13,6 +20,20 @@ export const TaskList = () => {
       return task;
     });
     setTasks(newTasks);
+    saveTasksInLocalStorage(newTasks);
+  };
+
+  const onDoneStateChange = (value: string, id: string) => {
+    const newTasks = tasks.filter((task) => {
+      return task.id !== id;
+    });
+    setTasks(newTasks);
+    saveTasksInLocalStorage(newTasks);
+    setDoneTasks([...doneTasks, { name: value, id: id, isDone: true }]);
+    saveDoneTasksInLocalStorage([
+      ...doneTasks,
+      { name: value, id: id, isDone: true },
+    ]);
   };
 
   const onDeleteTask = (id: string) => {
@@ -20,14 +41,7 @@ export const TaskList = () => {
       return task.id !== id;
     });
     setTasks(newTasks);
-  };
-
-  const onDoneStateChange = (value: string, id: string) => {
-    const doneTask = tasks.filter((task) => {
-      return task.id !== id;
-    });
-    setTasks(doneTask);
-    setDoneTasks([...doneTasks, { name: value, id: id, isDone: true }]);
+    saveTasksInLocalStorage(newTasks);
   };
 
   return (
