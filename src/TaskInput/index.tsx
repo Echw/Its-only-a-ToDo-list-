@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Input, Button } from "@material-tailwind/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { HiPlus } from "react-icons/hi";
 import { useAppContext } from "../utils/hooks/useAppContext";
 
@@ -16,7 +16,6 @@ export const TaskInput = () => {
       ...tasks,
       { name: task, id: Date.now().toString(), isDone: false },
     ]);
-    localStorage.setItem("tasks", JSON.stringify(tasks));
     setTask("");
   };
 
