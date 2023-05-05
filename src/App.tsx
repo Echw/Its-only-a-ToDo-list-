@@ -5,7 +5,7 @@ import { Sidebar } from "./Sidebar";
 function App() {
   return (
     <>
-      <div className="min-h-5/6 min-w-5/6 py-10 px-20 center flex justify-center grow">
+      <div className="h-full min-h-5/6 min-w-5/6 py-10 px-20 center flex justify-center grow">
         <Layout>
           <Sidebar
             open={false}
