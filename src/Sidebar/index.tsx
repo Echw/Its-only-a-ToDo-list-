@@ -25,7 +25,7 @@ export const Sidebar = (props: SidebarProps) => {
           className="bg-gray-800 flex flex-col p-0 w-full justify-start content-start "
           indicatorProps={{
             className:
-              "bg-red-400/10 w-full shadow-none rounded-none border-r-4 border-red-400 w-full",
+              "bg-red-500/10 w-full shadow-none rounded-none border-r-4 border-red-500 w-full",
           }}
         >
           {data.map(({ label, value, icon }) => (
@@ -42,9 +42,9 @@ export const Sidebar = (props: SidebarProps) => {
           ))}
         </TabsHeader>
       </div>
-      <TabsBody className="bg-brown-50 px-20 py-10">
+      <TabsBody className="bg-brown-50 px-20 py-10 w-full h-full">
         {data.map(({ value, content }) => (
-          <TabPanel key={value} value={value}>
+          <TabPanel key={value} value={value} className=" w-full h-full">
             {createElement(content)}
           </TabPanel>
         ))}

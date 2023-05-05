@@ -5,9 +5,6 @@ import { Sidebar } from "./Sidebar";
 function App() {
   return (
     <>
-      {/* <img src="./assets/ellipse_1.svg" />
-      <img src="./assets/ellipse_2.svg" />
-      <img src="./assets/ellipse_3.svg" /> */}
       <div className="min-h-5/6 min-w-5/6 py-10 px-20 center flex justify-center grow">
         <Layout>
           <Sidebar

@@ -11,7 +11,7 @@ export const data = [
     content: List,
   },
   {
-    label: "Kanaban",
+    label: "Kanban",
     value: "kanban",
     icon: BsKanban,
     content: Kanban,

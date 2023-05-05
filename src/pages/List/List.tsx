@@ -1,4 +1,3 @@
-import { Typography } from "@material-tailwind/react";
 import { DoneList } from "../../DoneList";
 import { TaskInput } from "../../TaskInput";
 import { TaskList } from "../../TaskList";
