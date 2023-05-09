@@ -14,6 +14,7 @@ import { IoMdClose } from "react-icons/io";
 
 import DatePicker from "react-datepicker";
 import { TaskType } from "../utils/types/TaskType";
+import { useAppContext } from "../utils/hooks/useAppContext";
 
 interface TaskProps {
   task: TaskType;
@@ -30,15 +31,28 @@ export const Task = ({
   onUndoneStateChange,
   onDeleteTask,
 }: TaskProps) => {
+  const { tasks, setTasks, saveTasksInLocalStorage } = useAppContext();
+
   const [open, setOpen] = useState(false);
-  const [update, setUpdate] = useState(task.name);
+  const [update, setUpdate] = useState(task.title);
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const handleOpen = () => setOpen((cur) => !cur);
+
+  const onDateAdd = () => {
+    const newTasks = tasks.map((t) => {
+      if (t.id === task.id) {
+        t.start = startDate || undefined;
+      }
+      return t;
+    });
+    setTasks(newTasks);
+    saveTasksInLocalStorage(newTasks);
+  };
 
   return (
     <>
       <li className="bg-brown-50 text-gray-700 flex grow justify-between items-stretch">
-        <Typography variant="paragraph">{task.name}</Typography>
+        <Typography variant="paragraph">{task.title}</Typography>
         <div>
           {!task.isDone && (
             <>
@@ -46,7 +60,7 @@ export const Task = ({
                 variant="text"
                 onClick={() => {
                   if (onDoneStateChange) {
-                    onDoneStateChange(task.name, task.id);
+                    onDoneStateChange(task.title, task.id);
                   }
                 }}
                 className="bg-brown-50 text-red-400 rounded-none hover:bg-brown-100"
@@ -67,7 +81,7 @@ export const Task = ({
               variant="text"
               onClick={() => {
                 if (onUndoneStateChange) {
-                  onUndoneStateChange(task.name, task.id);
+                  onUndoneStateChange(task.title, task.id);
                 }
               }}
               className="bg-brown-50 text-red-400 rounded-none hover:bg-brown-100"
@@ -124,6 +138,7 @@ export const Task = ({
               type="submit"
               onClick={() => {
                 handleOpen();
+                onDateAdd();
                 if (onChange) {
                   onChange(update, task.id);
                 }

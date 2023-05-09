@@ -15,8 +15,11 @@ export const DoneList = () => {
     const newDoneTasks = doneTasks.filter((task) => {
       return task.id !== id;
     });
-    setTasks([...tasks, { name: value, id: id, isDone: false }]);
-    saveTasksInLocalStorage([...tasks, { name: value, id: id, isDone: false }]);
+    setTasks([...tasks, { title: value, id: id, isDone: false }]);
+    saveTasksInLocalStorage([
+      ...tasks,
+      { title: value, id: id, isDone: false },
+    ]);
     setDoneTasks(newDoneTasks);
     saveDoneTasksInLocalStorage(newDoneTasks);
   };

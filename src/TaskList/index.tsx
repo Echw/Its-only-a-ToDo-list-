@@ -15,7 +15,7 @@ export const TaskList = () => {
   const onTaskChange = (value: string, id: string) => {
     const newTasks = tasks.map((task) => {
       if (task.id === id) {
-        task.name = value;
+        task.title = value;
       }
       return task;
     });
@@ -29,10 +29,10 @@ export const TaskList = () => {
     });
     setTasks(newTasks);
     saveTasksInLocalStorage(newTasks);
-    setDoneTasks([...doneTasks, { name: value, id: id, isDone: true }]);
+    setDoneTasks([...doneTasks, { title: value, id: id, isDone: true }]);
     saveDoneTasksInLocalStorage([
       ...doneTasks,
-      { name: value, id: id, isDone: true },
+      { title: value, id: id, isDone: true },
     ]);
   };
 

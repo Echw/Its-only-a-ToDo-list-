@@ -14,12 +14,12 @@ export const TaskInput = () => {
     e.preventDefault();
     setTasks([
       ...tasks,
-      { name: task, id: Date.now().toString(), isDone: false },
+      { title: task, id: Date.now().toString(), isDone: false },
     ]);
     setTask("");
     saveTasksInLocalStorage([
       ...tasks,
-      { name: task, id: Date.now().toString(), isDone: false },
+      { title: task, id: Date.now().toString(), isDone: false },
     ]);
   };
 

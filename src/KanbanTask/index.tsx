@@ -21,9 +21,9 @@ export const KanbanTask = ({ task }: KanbanTaskProps) => {
       ref={setNodeRef}
       style={style}
     >
-      {task.name}
+      {task.title}
       <GrDrag
-        className="absolute top-4 right-2 text-red-500"
+        className="absolute self-center right-2 text-red-500 focus:outline-none"
         {...listeners}
         {...attributes}
       />
