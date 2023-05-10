@@ -1,20 +1,32 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import { useAppContext } from "../../utils/hooks/useAppContext";
+import { useMemo } from "react";
 
 const Calendar = () => {
   const { tasks } = useAppContext();
 
+  const memoizedEventsFn = useMemo(() => {
+    return tasks.map((task) => {
+      return {
+        id: task.id,
+        start: task.start,
+        title: task.title,
+      };
+    });
+  }, [tasks]);
+
   return (
-    <div>
+    <>
       <FullCalendar
+        height="100%"
         plugins={[dayGridPlugin]}
         initialView="dayGridMonth"
         weekends={true}
-        events={tasks}
+        events={memoizedEventsFn}
         eventContent={renderEventContent}
       />
-    </div>
+    </>
   );
 };
 
@@ -22,7 +34,9 @@ const Calendar = () => {
 function renderEventContent(eventInfo: any) {
   return (
     <>
-      <i>{eventInfo.event.title}</i>
+      <i className="overflow-hidden	whitespace-normal">
+        {eventInfo.event.title}
+      </i>
     </>
   );
 }

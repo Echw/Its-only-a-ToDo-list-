@@ -15,6 +15,13 @@ body {
 #root {
   height: 100%;
   width: 100%;
+  --fc-button-bg-color: #ef5350;
+  --fc-button-border-color: #ef5350;
+  --fc-button-hover-bg-color: #424242;
+  --fc-button-hover-border-color: #424242;
+  --fc-button-active-bg-color: #424242;
+  --fc-button-active-border-color: #424242;
+  --fc-today-bg-color: rgba(239, 83, 80, 0.15);
 }
 
 h1 {

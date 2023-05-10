@@ -50,13 +50,13 @@ const Kanban = () => {
     }
     foundDoneTask.isDone = false;
     foundDoneTask.inProgress = true;
-    setDoneTasks([...doneTasks, foundDoneTask]);
-    saveDoneTasksInLocalStorage([...doneTasks, foundDoneTask]);
-    const newTasks = tasks.filter((task) => {
+    setTasks([...tasks, foundDoneTask]);
+    saveTasksInLocalStorage([...tasks, foundDoneTask]);
+    const newTasks = doneTasks.filter((task) => {
       return task.id !== taskId;
     });
-    setTasks(newTasks);
-    saveTasksInLocalStorage(newTasks);
+    setDoneTasks(newTasks);
+    saveDoneTasksInLocalStorage(newTasks);
   };
 
   const onUndoneStateChange = (taskId: string) => {
@@ -78,6 +78,7 @@ const Kanban = () => {
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
+    console.log(event);
     if (over?.id === "done") {
       onDoneStateChange(active.id as string);
     }
@@ -86,6 +87,7 @@ const Kanban = () => {
     }
     if (over?.id === "progress") {
       onProgressStateChange(active.id as string);
+      onProgressDoneStateChange(active.id as string);
     }
   };
 
